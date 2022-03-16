@@ -11,20 +11,15 @@ for page in range(1, 6):
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36,'
     }
     response = requests.get(url, headers=headers).text
-    # print(response)
     videoId = re.findall('"vid":(\d+),"liveId"', response)
-    # video_Id = re.findall('</li><li data-vid="(.*?)">', response)
-    # print(videoId)
-    # print(video_Id)
     for id in videoId:
         id_url = f'https://liveapi.huya.com/moment/getMomentContent?videoId={id}'
         res = requests.get(id_url, headers=headers).json()
-        # pprint.pprint(res)
         video_url = res['data']['moment']['videoInfo']['definitions'][0]['url']
         title = res['data']['moment']['title']
         title = re.sub(r'[/\|:"*?<>]]', '', title)
-        # video_content = requests.get(video_url, headers=headers).content
-        # with open('video\\' + title + '.mp4', mode='wb') as f:
-        #     f.write(video_content)
+        video_content = requests.get(video_url, headers=headers).content
+        with open('video\\' + title + '.mp4', mode='wb') as f:
+            f.write(video_content)
         print(title, video_url)
 print('over')
