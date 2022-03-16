@@ -44,12 +44,6 @@ for page in range(0, 321, 32):
             '评论条数': info_data['comments'],
             '详情页': f'https://www.meituan.com/meishi/{info_data["id"]}/',
         }
-
-        # i = 1
-        # for info_data in deals:
-        #     info_searchResult[f'店铺优惠{i}'] = info_data['title']
-        #     i += 1
-
         csv_writer.writerow(info_searchResult)
         print(info_searchResult)
     num += 1
