@@ -1,4 +1,3 @@
-import pprint
 import requests
 import re
 import csv
@@ -14,8 +13,8 @@ headers = {
 response = requests.get(url, headers=headers).text
 videoId = re.findall('"vid":(\d+),"liveId"', response)
 i = 0
-for id in videoId:
-    id_url = f'https://cxt.huya.com/open/danmu/list.do?vid={id}'
+for id_ in videoId:
+    id_url = f'https://cxt.huya.com/open/danmu/list.do?vid={id_}'
     res = requests.get(id_url, headers=headers).json()
     for comment in res:
         Name = comment['nick']
