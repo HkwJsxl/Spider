@@ -14,8 +14,8 @@ mian_res = requests.get(url=mian_url, headers=headers).text
 mediaId = re.findall('<a href="/v/(.*)" target="_blank" class="ac-space-video weblog-item" data-wbinfo=.*>',
                      mian_res)
 # print(mediaId)
-for id in mediaId:
-    url = f'https://www.acfun.cn/v/{id}'
+for id_ in mediaId:
+    url = f'https://www.acfun.cn/v/{id_}'
     response = requests.get(url=url, headers=headers).text
     # print(response)
     html_data = re.findall('window.pageInfo = window.videoInfo = (.*);', response)[0]
