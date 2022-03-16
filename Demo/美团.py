@@ -31,12 +31,7 @@ for page in range(0, 321, 32):
         'q': '烤肉',
         'token': 'l0cHfarV7eF4Cp28EW1rt3fjJIQAAAAA9A8AAP0Noy-T-rjGwM-9wm9YK5BeqrQFxdbTLqLcYnsmJyiU5sCoLaZQ2zvt3jPH0kCTjQ',
     }
-    proxies = {
-        # 'http': 'http://183.173.116.203:10080', 'https': 'http://183.173.116.203:10080',
-        # 'http': 'http://140.249.73.79:26421', 'https': 'http://140.249.73.79:26421'
-        'http': 'http://1.14.122.251:1080', 'https': 'http://1.14.122.251:1080'
-    }
-    html_data = requests.get(url=url, headers=headers, params=data, proxies=proxies).json()
+    html_data = requests.get(url=url, headers=headers, params=data).json()
     searchResult = html_data['data']['searchResult']
     for info_data in searchResult:
         deals = info_data['deals']
