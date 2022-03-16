@@ -30,15 +30,9 @@ def get_page(pcursor):
     if pcursor == None:  # 最底 pcursor 为 no_more
         print('全部下载成功')
         return 0  # 退出
-    proxies = [
-        {'http': 'http://127.0.0.1:7890'},
-        {'http': 'http://64.227.41.59:443'},
-        {'http': 'http://112.5.37.33:777'},
-        {'https': 'http://127.0.0.1:7890'},
-    ]
-    proxies = random.choice(proxies)
+    
     data = json.dumps(data)
-    response = requests.post(url=url, headers=headers, data=data, proxies=proxies)
+    response = requests.post(url=url, headers=headers, data=data)
     # pprint.pprint(response)
     data_json = response.json()
     feeds = data_json['data']['hashTagData']['feeds']
@@ -46,7 +40,6 @@ def get_page(pcursor):
     page = 1
 
     for feed in feeds:
-        # print(f'正在爬取第{page}个短视频'.center(50, '-'))
         caption = feed['photo']['caption']
         photoUrl = feed['photo']['photoUrl']
         # caption = re.sub(r'[/\:*?"<>|\n]', '', caption)
